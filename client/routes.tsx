@@ -7,6 +7,11 @@ import { PostsLayout } from "./components/PostsLayout"
 import { RootLayout } from "./components/RootLayout"
 import { RootPage } from "./components/RootPage"
 import { Spinner } from "./components/spinner"
+import { routeTree as fileRouteTree } from './file-based-routing/routeTree.gen'
+
+// Switch between file based and normal routing with Tanstack Router
+export const FILE_BASED_ROUTING = true
+
 
 const rootRoute = new RootRoute({
     component: RootLayout,
@@ -74,7 +79,7 @@ const routeTree = rootRoute.addChildren([
 ])
 
 export const router = new Router({
-    routeTree,
+    routeTree: FILE_BASED_ROUTING ? fileRouteTree : routeTree,
     defaultPendingComponent: () => (
         <div className={`p-2 text-2xl`}>
             <Spinner />

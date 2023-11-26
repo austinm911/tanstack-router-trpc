@@ -3,12 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently 'pnpm:dev:*'",
+    "dev": "concurrently 'pnpm:dev:*' 'pnpm:tsr:watch'",
     "dev:client": "wait-port 4000 && vite",
     "dev:server": "tsx server/server.ts",
     "build": "vite build",
     "serve": "vite preview",
-    "start": "vite"
+    "start": "vite",
+    "tsr:generate": "cd client/file-based-routing && tsr generate",
+    "tsr:watch": "cd client/file-based-routing && tsr watch"
   },
   "dependencies": {
     "@tanstack/actions": "0.0.1-beta.203",
