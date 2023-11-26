@@ -1,6 +1,6 @@
 import React from 'react'
 import { Spinner } from './spinner'
-import { Link, Outlet, useRouterState } from '@tanstack/react-router'
+import { Link, Outlet, useNavigate, useRouterState } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/router-devtools'
 
 type Props = {}
@@ -9,7 +9,7 @@ export function RootLayout({ }: Props) {
     const isPending = useRouterState({ select: (s) => s.status === 'pending' })
     return (
         <>
-            <div className='min-h-screen flex flex-col'>
+            <div className='flex flex-col min-h-screen'>
                 <div className={`flex items-center border-b gap-2`}>
                     <h1 className={`text-3xl p-2`}>Kitchen Sink</h1>
                     {/* Show a global spinner when the router is transitioning */}
@@ -39,6 +39,7 @@ export function RootLayout({ }: Props) {
                                                 // exact: to === '.',
                                             }
                                         }
+
                                         preload="intent"
                                         className={`block py-2 px-3 text-blue-700`}
                                         // Make "active" links bold
@@ -49,6 +50,9 @@ export function RootLayout({ }: Props) {
                                 </div>
                             )
                         })}
+                        <Link to='/$teamId' params={{ teamId: 'tem382789sbnd' }}>
+                            Go to Team
+                        </Link>
                     </div>
                     <div className={`flex-1 border-l border-gray-200`}>
                         {/* Render our first route match */}
